@@ -49,7 +49,7 @@ public class Solution {
 
         HashSet<Integer> hashSet = new HashSet<>();
         for (int i = 0; i < length; i++) {
-            if (hashSet.add(numbers[i]) == false) {
+            if (!hashSet.add(numbers[i])) {
                 duplication[0] = numbers[i];
                 return true;
             }
