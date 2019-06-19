@@ -40,11 +40,8 @@ public class Solution {
 
         return arrayList;
     }
-
     /**
      * 栈是用来模拟递归的，那么也可以用递归实现。
-     *
-     *
      * */
     public ArrayList<Integer> printListFromTailToHead1(ListNode listNode){
 

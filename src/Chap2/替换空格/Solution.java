@@ -4,7 +4,6 @@ package Chap2.替换空格;
  * 请实现一个函数，将一个字符串中的每个空格替换成“%20”。
  * 例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
  * */
-
 public class Solution {
 
     /**
@@ -34,6 +33,9 @@ public class Solution {
      *
      * */
     public static String replaceSpace1(StringBuffer str) {
+
+        if (str == null)
+            return null;
 
         int oldIndex = str.length() - 1; //保存原始长度
 
@@ -65,7 +67,7 @@ public class Solution {
 
     public static void main(String[] args) {
 
-        StringBuffer stringBuffer = new StringBuffer("We Are Happy");
+        StringBuffer stringBuffer = new StringBuffer("");
         System.out.println(replaceSpace1(stringBuffer));
 
 
