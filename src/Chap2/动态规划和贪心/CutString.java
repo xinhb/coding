@@ -96,8 +96,35 @@ public class CutString {
         }
         return products[length];
     }
+    /**
+     * 贪婪法
+     * 每一步都有一个最优解的选择（固定的），而不像动态规划那样，需要对比多个选择来得到最优解
+     *
+     * 实例分析：
+     *  当n>5时，两个不等式成立 ：3*(n-3) > n ， 2*(n-2) > n，所以每一步要分出3来，无法分3再分2。
+     *
+     * 动态规划练好，贪婪可遇不可求，需要较强数学功底。
+     * */
+    public static int maxProductAfterCutting2(int length) {
 
+        if (length < 2)
+            return 0;
+        if (length == 2)
+            return 1;
+        if (length == 3)
+            return 2;
+
+        int timesOf3 = length/3; //可以分成长度为3的段数
+
+        //最后一段为4,需要回到前一段，将它分成 2*2 而不是 3*1
+        if (length -timesOf3*3 == 1)
+            timesOf3 --;
+        // 长度为2的绳子段数
+        int timesOf2 = (length - 3* timesOf3)/2;
+        return (int) Math.pow(3, timesOf3) * (int) Math.pow(2, timesOf2);
+
+    }
     public static void main(String[] args) {
-        System.out.println(maxProductAfterCutting(5));
+        System.out.println(maxProductAfterCutting2(15));
     }
 }
