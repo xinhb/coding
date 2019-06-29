@@ -1,5 +1,7 @@
 package Chap2.循环与递归;
 
+import java.util.Arrays;
+
 /**
  * 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
  *
@@ -14,13 +16,56 @@ public class Fibonacci {
    * */
     public int fibonacci(int n) {
 
-        if (n < 2)
-            return n;
+        if (n == 0){
+            return 0;
+        }
+        if (n == 1){
+            return 1;
+        }
+
         return fibonacci(n - 1) + fibonacci(n - 2);
 
         //使用三目运算符，一句话搞定
         // return n < 2  ? n : Fibonacci(n - 1) + Fibonacci(n - 2);
     }
+
+    /**记忆化搜索实现*/
+    public static int fibonacci2(int n) {
+
+        if (n == 0){
+            return 0;
+        }
+        if (n == 1){
+            return 1;
+        }
+        //创建数组，并将初始值赋为-1
+        int[] res = new int[n + 1];
+        Arrays.fill(res,-1);
+
+        //从n=2开始，将结果记录到res数组中，下次求解fib(n)时不会进入递归
+        if (res[n] == -1) {
+            res[n] = fibonacci2(n-1) + fibonacci2(n-2);
+        }
+        return res[n];
+    }
+
+    /*动态规划解法*/
+    public static int fibonacci3(int n) {
+        //数组中访问的下标小于0会越界
+        if(n < 2) return n;
+
+        int[] res = new int[n + 1];
+        Arrays.fill(res,-1);
+
+        res[0] = 0;
+        res[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            res[i] = res[i - 1] + res[i - 2];
+        }
+        return res[n];
+    }
+
 
     /**
      * 解法二：
@@ -47,6 +92,9 @@ public class Fibonacci {
         return fibN;
     }
 
+    public static void main(String[] args) {
+        System.out.println(fibonacci2(25));
+    }
 
     /**
      * 还有人说尾递归，和动态规划也可以实现

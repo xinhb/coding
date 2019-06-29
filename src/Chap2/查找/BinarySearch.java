@@ -30,10 +30,12 @@ public class BinarySearch {
     public static int binarySearch1(int[] arr,int l,int r,int target){
 
         int mid = (l+r)/2;  //每次进入递归重新计算中间位置
+        if (l > r) return -1;
+
         if (arr[mid] == target && r >= l) { //r >= l不加效果一样
             return mid;
         }
-        else if (target > arr[mid] && r >= l)
+        else if (target > arr[mid] )
              return binarySearch1(arr, mid + 1, r, target);
         else
              return binarySearch1(arr, l, mid - 1, target);
