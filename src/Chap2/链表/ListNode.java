@@ -27,6 +27,19 @@ public class ListNode {
     }
 
     /**
+     * <h2>打印链表的所有节点值</h2>
+     */
+    public static void printList(ListNode pNode) {
+        if (pNode == null) {
+            System.out.println("链表不存在");
+        }
+        while (pNode != null) {
+            System.out.print(pNode.value + " ");
+            pNode = pNode.next;
+        }
+    }
+
+    /**
      * <h2>插入节点</h2>
      * 在当前节点后面插入一个节点，需要先拿到当前节点的下一个节点
      */

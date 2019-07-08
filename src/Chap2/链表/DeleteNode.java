@@ -8,17 +8,22 @@ public class DeleteNode {
     /**
      * 常规做法：
      *  拿到要删除节点的前一个节点,在查找上花了0(n)的时间复杂度
+     *
+     * @param  pHead 链表的头结点
+     * @param  pToBeDeleted 链表中要删除的节点
      * */
-    public void deleteNode(ListNode pHead, ListNode pToBeDeleted) {
+    public static void deleteNode(ListNode pHead, ListNode pToBeDeleted) {
 
-        ListNode curNode = pHead;
-        //拿到要删除节点的前一个节点
-        while (curNode.next != pToBeDeleted) {
+        ListNode pre = pHead;              // 前一个节点
+        ListNode curNode = pHead;          //当前节点
+
+        //找到要删的节点
+        while (curNode != pToBeDeleted) {
+            pre = curNode;                 //记录被删节点的前节点
             curNode = curNode.next;
         }
-
-        ListNode aimNode = curNode.next.next;
-        curNode.next = aimNode;
+        ListNode aimNode = curNode.next;   //目标节点
+        pre.next = aimNode;                //前节点指向目标节点
     }
 
     /**
@@ -33,7 +38,7 @@ public class DeleteNode {
      * @param pToBeDeleted 要被删除的节点
      * */
 
-    public void deleteNode1(ListNode pHead, ListNode pToBeDeleted) {
+    public static void deleteNode1(ListNode pHead, ListNode pToBeDeleted) {
 
         if (pHead == null || pToBeDeleted == null)
             return;
@@ -42,10 +47,10 @@ public class DeleteNode {
             pHead =null;
         }
 
-        ListNode pDeletedNext = pToBeDeleted.next; //用值域覆盖被删节点的节点
-        ListNode pAfter = pDeletedNext.next.next; //被删节点的下下个节点
+        ListNode pNext = pToBeDeleted.next;
+        ListNode pNextNext = pNext.next;
+        pToBeDeleted.value = pNext.value;
 
-        pToBeDeleted.value = pDeletedNext.value;
-        pToBeDeleted.next = pAfter;
+        pToBeDeleted.next = pNextNext; //要删节点指向下下个节点
     }
 }
